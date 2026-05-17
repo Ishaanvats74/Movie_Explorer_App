@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 class OverviewSection extends StatelessWidget {
   final Map<String, dynamic> movie;
-
   const OverviewSection({super.key, required this.movie});
 
   @override
@@ -10,35 +9,26 @@ class OverviewSection extends StatelessWidget {
     final overview = movie['overview'] ?? "No overview available.";
 
     return Padding(
-      padding: const EdgeInsets.all(16),
-
+      padding: const EdgeInsets.fromLTRB(16, 20, 16, 4),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
-
         children: [
-          const Text(
-            "Overview",
-
+          Text(
+            "OVERVIEW",
             style: TextStyle(
-              color: Colors.white,
-
-              fontSize: 20,
-
-              fontWeight: FontWeight.bold,
+              color: Colors.grey.shade500,
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              letterSpacing: 1.2,
             ),
           ),
-
           const SizedBox(height: 10),
-
           Text(
             overview,
-
             style: const TextStyle(
               color: Colors.white70,
-
-              fontSize: 15,
-
-              height: 1.7,
+              fontSize: 14.5,
+              height: 1.75,
             ),
           ),
         ],
