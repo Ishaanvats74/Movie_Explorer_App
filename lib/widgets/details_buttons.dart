@@ -5,8 +5,8 @@ import '../services/movie_service.dart';
 
 class DetailsButtons extends StatelessWidget {
   final int movieId;
-
-  const DetailsButtons({super.key, required this.movieId});
+  final String movieName;
+  const DetailsButtons({super.key, required this.movieId, required this.movieName});
 
   @override
   Widget build(BuildContext context) {
@@ -50,16 +50,21 @@ class DetailsButtons extends StatelessWidget {
               height: 50,
 
               child: ElevatedButton.icon(
+                // TRAILER BUTTON
                 onPressed: () async {
                   final trailerKey = await MovieService().getTrailerKey(
                     movieId,
                   );
 
                   if (trailerKey != null && context.mounted) {
+                    // Convert key to full YouTube URL
+                    final youtubeUrl =
+                        'https://www.youtube.com/watch?v=$trailerKey';
+
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (_) => TrailerScreen(videoKey: trailerKey),
+                        builder: (_) => TrailerScreen(youtubeUrl: youtubeUrl,movieName: movieName),
                       ),
                     );
                   } else {

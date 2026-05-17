@@ -86,7 +86,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
                     OverviewSection(movie: movie!),
 
                     // ───── BUTTONS ─────
-                    DetailsButtons(movieId: widget.movieId),
+                    DetailsButtons(movieId: widget.movieId ,movieName: movie?['title'] ?? movie?['name'] ?? 'Trailer'),
 
                     const SizedBox(height: 20),
                   ],
