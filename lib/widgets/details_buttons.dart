@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../screens/trailer_screen.dart';
 import '../services/movie_service.dart';
+import '../screens/movie_screen.dart';
 
 class DetailsButtons extends StatelessWidget {
   final int movieId;
@@ -31,12 +32,11 @@ class DetailsButtons extends StatelessWidget {
                 );
                 if (!context.mounted) return;
                 if (imdbId != null) {
-                  // final url = 'https://streamimdb.ru/embed/movie/$imdbId';
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (_) =>
-                          WatchScreen(imdbId: imdbId, movieName: movieName),
+                          MovieScreen(imdbId: imdbId, movieName: movieName),
                     ),
                   );
                 } else {
@@ -55,18 +55,19 @@ class DetailsButtons extends StatelessWidget {
               colors: [Colors.red.shade900, Colors.red.shade600],
               onPressed: () async {
                 final trailerKey = await MovieService().getTrailerKey(movieId);
+                debugPrint('Trailer key: $trailerKey');
                 if (trailerKey != null && context.mounted) {
                   final youtubeUrl =
                       'https://www.youtube.com/watch?v=$trailerKey';
-                  // Navigator.push(
-                  //   context,
-                  //   MaterialPageRoute(
-                  //     builder: (_) => TrailerScreen(
-                  //       youtubeUrl: youtubeUrl,
-                  //       movieName: movieName,
-                  //     ),
-                  //   ),
-                  // );
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => TrailerScreen(
+                        youtubeUrl: youtubeUrl,
+                        movieName: movieName,
+                      ),
+                    ),
+                  );
                 } else {
                   if (context.mounted) {
                     ScaffoldMessenger.of(context).showSnackBar(
