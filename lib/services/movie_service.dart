@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class MovieService {
   final Dio dio = Dio();
 
-  final String token =
-      "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3MzQwM2U5MGYwOGIwNWFmZTcxZDFjYmQ2OWY0ZTliMSIsIm5iZiI6MTc0MDMwNDUxOC44NzMsInN1YiI6IjY3YmFmMDg2YTIzOTI5YWMyOGJlY2U2YSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.uLFUF2Uj1296cgrqKEpMdynTyg9H09-bryo1uYSj37o";
+  final token = dotenv.env['TMDB_API_KEY'];
   final baseUrl = 'https://api.themoviedb.org/3';
 
   Options get options => Options(headers: {"Authorization": "Bearer $token"});
